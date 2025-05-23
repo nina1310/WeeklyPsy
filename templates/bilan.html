@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bilan de la semaine</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+      background-color: #e8f0fe;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #007BFF;
+    }
+
+    h3 {
+      margin-top: 40px;
+      color: #007BFF;
+    }
+
+    .resume-block p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    canvas {
+      display: block;
+      max-width: 100%;
+      margin: 20px auto;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back-link a {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .back-link a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Bilan de ta semaine, {{ pseudo }}</h2>
+
+    <div class="resume-block">
+      {% for phrase in resume %}
+        <p>{{ phrase }}</p>
+      {% endfor %}
+    </div>
+
+    {% if labels|length == 7 %}
+      <h3>Évolution de ton bonheur cette semaine</h3>
+
+      <div style="text-align: center; margin-bottom: 15px;">
+        {% for date, emoji in emoji_dates %}
+          <div style="display: inline-block; margin: 5px; text-align: center;">
+            <div style="font-size: 24px;">{{ emoji }}</div>
+            <div style="font-size: 12px; color: #666;">{{ date }}</div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <canvas id="graphiqueBonheur" width="400" height="200"></canvas>
+
+      <script>
+        const ctx = document.getElementById('graphiqueBonheur').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: {{ labels | tojson }},
+            datasets: [{
+              label: 'Bonheur général (sur 10)',
+              data: {{ scores_bonheur | tojson }},
+              borderColor: 'rgba(255, 159, 64, 1)',
+              backgroundColor: 'rgba(255, 159, 64, 0.2)',
+              tension: 0.3,
+              fill: true,
+              pointRadius: 5,
+              pointHoverRadius: 7
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 10
+              }
+            }
+          }
+        });
+      </script>
+    {% else %}
+      <p style="margin-top: 30px;">Le graphique de bonheur s'affichera à la fin de ta semaine de suivi complète 😊</p>
+    {% endif %}
+
+    <div class="back-link">
+      <a href="/dashboard/{{ pseudo }}">Retour au tableau de bord</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Suivi du jour</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+      background-color: #e8f0fe;
+      display: flex;
+      justify-content: center;
+      padding: 50px 0;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    h3 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #007BFF;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    .value-display {
+      display: block;
+      text-align: right;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Suivi du jour - {{ pseudo }}</h2>
+
+    <form method="post">
+
+      <h3>1. Émotions générales aujourd’hui :</h3>
+      <label><input type="checkbox" name="emotions" value="heureux"> Heureux</label>
+      <label><input type="checkbox" name="emotions" value="triste"> Triste</label>
+      <label><input type="checkbox" name="emotions" value="calme"> Calme</label>
+      <label><input type="checkbox" name="emotions" value="stressé"> Stresse</label>
+      <label><input type="checkbox" name="emotions" value="fatigué"> Fatigue</label>
+      <label><input type="checkbox" name="emotions" value="joie"> Joie</label>
+      <label><input type="checkbox" name="emotions" value="fierté"> Fierté</label>
+      <label><input type="checkbox" name="emotions" value="jalousie"> Jalousie</label>
+      <label><input type="checkbox" name="emotions" value="gratitude"> Gratitude</label>
+      <label><input type="checkbox" name="emotions" value="anxiété"> Anxiété</label>
+      <label><input type="checkbox" name="emotions" value="culpabilité"> Culpabilité</label>
+
+      <h3>2. As-tu été en colère aujourd’hui ?</h3>
+      <label><input type="radio" name="colere" value="oui"> Oui</label>
+      <label><input type="radio" name="colere" value="un peu"> Un peu</label>
+      <label><input type="radio" name="colere" value="non"> Non</label>
+
+      <h3>3. Niveau de stress :</h3>
+      <input type="range" name="stress" min="0" max="10" value="5" id="stressRange" oninput="document.getElementById('stressValue').textContent = this.value">
+      <span class="value-display">Valeur : <span id="stressValue">5</span>/10</span>
+
+      <h3>4. Comment te sens-tu dans tes études ?</h3>
+      <input type="range" name="etudes" min="0" max="10" value="5" id="etudesRange" oninput="document.getElementById('etudesValue').textContent = this.value">
+      <span class="value-display">Valeur : <span id="etudesValue">5</span>/10</span>
+
+      <h3>5. Question du jour :</h3>
+      <p><strong>{{ question_speciale }}</strong></p>
+      <label><input type="radio" name="extra" value="oui"> Oui</label>
+      <label><input type="radio" name="extra" value="non"> Non</label>
+
+      <button type="submit" class="submit-btn">Valider</button>
+    </form>
+  </div>
+</body>
+</html>

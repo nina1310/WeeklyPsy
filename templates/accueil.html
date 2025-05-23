@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenue sur WeeklyPsy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    body {
+  margin: 0;
+  background-color: #e8f0fe;
+  font-family: 'Baloo 2', cursive;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  min-height: 100vh;
+  }
+
+
+    .container {
+      text-align: center;
+      background-color: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .container img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #007BFF;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 12px 25px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      width: 80%;
+      max-width: 250px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .help-box {
+      background-color: #f0f9ff;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      color: #333;
+      text-align: left;
+    }
+
+    .help-box h3 {
+      color: #007BFF;
+      margin-top: 0;
+    }
+
+    .help-box ul {
+      padding-left: 20px;
+    }
+
+    .help-box li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='images/weeklypsy_logo.png') }}" alt="Logo WeeklyPsy">
+    <h1>Bienvenue sur WeeklyPsy</h1>
+    <p>Ton journal de bord, chaque jour après les cours. Prends soin de toi :)</p>
+
+    <div class="help-box">
+      <h3>Besoin d’aide ?</h3>
+      <p>Tu peux parler à quelqu’un :</p>
+      <ul>
+        <li><strong>Fil Santé Jeunes</strong> — 0800 235 236 (gratuit, anonyme, 7j/7)</li>
+        <li><strong>Nightline Étudiants</strong> — <a href="https://www.nightline.fr" target="_blank">www.nightline.fr</a></li>
+        <li><strong>Psychologue universitaire</strong> — sans rendez-vous au SUMPPS</li>
+      </ul>
+    </div>
+
+    <a href="{{ url_for('login') }}" class="btn">Se connecter</a>
+    <a href="{{ url_for('register') }}" class="btn">Créer un compte</a>
+  </div>
+</body>
+</html>

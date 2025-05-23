@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Suivi - Études</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    body {
+  font-family: 'Baloo 2', cursive;
+  background-color: #e8f0fe;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+  margin: 0;
+  }
+
+
+    .form-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Baloo 2', cursive;
+      box-sizing: border-box;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Suivi - Études</h2>
+    <form method="POST">
+
+      <label for="motivation">Motivation pour étudier (sur 10) :</label>
+      <input type="number" id="motivation" name="motivation" min="0" max="10" required>
+
+      <label for="avancement">As-tu bien avancé aujourd’hui ?</label>
+      <textarea id="avancement" name="avancement" rows="2" placeholder="Parle-moi de ton avancement..."></textarea>
+
+      <label for="envie_arret">Combien de fois as-tu eu envie d’arrêter la licence aujourd’hui ?</label>
+      <select name="envie_arret" id="envie_arret" required>
+        <option value="">--Choisir--</option>
+        <option value="0">0 fois</option>
+        <option value="1">1 fois</option>
+        <option value="2">2 fois</option>
+        <option value="3+">3 fois ou plus</option>
+      </select>
+
+      <label for="retard">As-tu du retard dans tes cours ?</label>
+      <select name="retard" id="retard" required>
+        <option value="">--Choisir--</option>
+        <option value="oui">Oui</option>
+        <option value="non">Non</option>
+      </select>
+
+      <label for="incomprehension">As-tu eu l’impression de ne rien comprendre aujourd’hui ?</label>
+      <select name="incomprehension" id="incomprehension" required>
+        <option value="">--Choisir--</option>
+        <option value="oui">Oui</option>
+        <option value="non">Non</option>
+      </select>
+
+      <button type="submit" class="submit-btn">Valider</button>
+    </form>
+  </div>
+</body>
+</html>
